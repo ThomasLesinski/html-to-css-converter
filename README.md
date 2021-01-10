@@ -1,4 +1,4 @@
-# html-to-css-converter
+# HTML to CSS converter
 
 ## ToDos
 
