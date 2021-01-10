@@ -1,27 +1,159 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <style>
+      .textarea-dark {
+        resize: none;
+        padding-top: 18px;
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-    <title>Hello, world!</title>
+      .headline {
+        display: inline;
+        position: relative;
+        letter-spacing: -5px;
+        color: #3e3e3e;
+        cursor: text;
+        font: 70px Helvetica, Sans-Serif;
+      }
+
+      .subline {
+        font-size: 30px;
+        position: relative;
+        max-width: 320px;
+        margin: 0 auto;
+        top: -16px;
+      }
+
+      .subline:after {
+        content: "";
+        width: 4px;
+        height: 2px;
+        background: #000;
+        width: 100%;
+        position: absolute;
+        left: -50%;
+        transform: translateX(50%);
+        top: 26px;
+      }
+
+      .subline-text {
+        background: #fff;
+        display: inline;
+        z-index: 1;
+        position: relative;
+        padding: 0 23px;
+      }
+
+      .textarea-headline {
+        position: absolute;
+        top: -12px;
+        background: #fff;
+        width: auto;
+        left: 12px;
+        font-weight: 700;
+        border-top: 1px solid #CED4DA;
+        border-radius: 10px;
+      }
+
+      .textarea-dark:focus ~ .textarea-headline {
+        border-top: 1px solid #86B7FE;
+      }
+    </style>
+
+    <title>HTML to CSS converter</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+      <div class="text-center mt-4">
+        <span class="headline">HTML to CSS</span>
+        <div class="subline">
+          <div class="subline-text">converter</div>
+        </div>
+      </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+      <div class="row position-relative mt-3">
+        <textarea class="form-control textarea-dark textarea-html" rows="10">
+          <div class="container">
+            <div class="inner">
+              <div class="item">
+                <div class="text">
+                  D
+                </div>
+          
+                <div class="img">
+                  E
+                </div>
+              </div>
+          
+              <div class="item">
+                <div class="text">
+                  D
+                </div>
+          
+                <div class="img">
+                  E
+                </div>
+              </div>
+            </div>
+          </div>
+        </textarea>
+        <div class="textarea-headline">HTML</div>
+      </div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+      <div class="container text-center mt-3 mb-3">
+        <div class="btn btn-primary btn-convert">Convert</div>
+      </div>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+      <div class="row position-relative">
+        <textarea class="form-control textarea-dark textarea-css" rows="10"></textarea>
+        <div class="textarea-headline">CSS</div>
+      </div>
+    </div>
+
+    <script>
+      const btnConvert = document.querySelector('.btn-convert');
+
+      btnConvert.addEventListener('click', () => {
+        const inputHtml = document.querySelector('.textarea-html');
+        const rawHtml = inputHtml.value;
+        const inputCss = document.querySelector('.textarea-css');
+
+        let classAttributes = rawHtml.match(/class=".*"/g);
+
+        const uniqueClasses = [];
+
+        if (classAttributes.length > 0) {
+          classAttributes.forEach((classAttribute) => {
+            classAttribute = classAttribute.replace('class="', '');
+            classAttribute = classAttribute.substring(0, classAttribute.length - 1);
+
+            // TODO: Check if there are more than 1 classes?
+
+            if (!uniqueClasses.includes(classAttribute)) {
+              uniqueClasses.push(classAttribute);
+            }
+          });
+        }
+
+        let convertedCss = '';
+
+        uniqueClasses.forEach((uniqueClass, index) => {
+          const cssCode = `.${uniqueClass} {}\n\n`;
+
+          convertedCss += cssCode;
+        });
+
+        inputCss.value = convertedCss;
+      });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-    -->
   </body>
 </html>
