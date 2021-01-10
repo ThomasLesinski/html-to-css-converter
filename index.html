@@ -79,31 +79,7 @@
       </div>
 
       <div class="row position-relative mt-3">
-        <textarea class="form-control textarea-dark textarea-html" rows="10">
-          <div class="container">
-            <div class="inner">
-              <div class="item">
-                <div class="text">
-                  D
-                </div>
-          
-                <div class="img">
-                  E
-                </div>
-              </div>
-          
-              <div class="item">
-                <div class="text">
-                  D
-                </div>
-          
-                <div class="img">
-                  E
-                </div>
-              </div>
-            </div>
-          </div>
-        </textarea>
+        <textarea class="form-control textarea-dark textarea-html" rows="10"></textarea>
         <div class="textarea-headline">HTML</div>
       </div>
 
@@ -133,8 +109,6 @@
           classAttributes.forEach((classAttribute) => {
             classAttribute = classAttribute.replace('class="', '');
             classAttribute = classAttribute.substring(0, classAttribute.length - 1);
-
-            // TODO: Check if there are more than 1 classes?
 
             if (!uniqueClasses.includes(classAttribute)) {
               uniqueClasses.push(classAttribute);
