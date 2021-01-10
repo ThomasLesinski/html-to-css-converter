@@ -119,9 +119,7 @@
         let convertedCss = '';
 
         uniqueClasses.forEach((uniqueClass, index) => {
-          const cssCode = `.${uniqueClass} {}\n\n`;
-
-          convertedCss += cssCode;
+          convertedCss += `.${uniqueClass} {}\n\n`;
         });
 
         inputCss.value = convertedCss;
