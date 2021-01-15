@@ -103,26 +103,28 @@
 
         let classAttributes = rawHtml.match(/class=".*"/g);
 
-        const uniqueClasses = [];
+        if (classAttributes !== null) {
+          const uniqueClasses = [];
 
-        if (classAttributes.length > 0) {
-          classAttributes.forEach((classAttribute) => {
-            classAttribute = classAttribute.replace('class="', '');
-            classAttribute = classAttribute.substring(0, classAttribute.length - 1);
+          if (classAttributes.length > 0) {
+            classAttributes.forEach((classAttribute) => {
+              classAttribute = classAttribute.replace('class="', '');
+              classAttribute = classAttribute.substring(0, classAttribute.length - 1);
 
-            if (!uniqueClasses.includes(classAttribute)) {
-              uniqueClasses.push(classAttribute);
-            }
+              if (!uniqueClasses.includes(classAttribute)) {
+                uniqueClasses.push(classAttribute);
+              }
+            });
+          }
+
+          let convertedCss = '';
+
+          uniqueClasses.forEach((uniqueClass, index) => {
+            convertedCss += `.${uniqueClass} {}\n\n`;
           });
+
+          inputCss.value = convertedCss;
         }
-
-        let convertedCss = '';
-
-        uniqueClasses.forEach((uniqueClass, index) => {
-          convertedCss += `.${uniqueClass} {}\n\n`;
-        });
-
-        inputCss.value = convertedCss;
       });
     </script>
 
