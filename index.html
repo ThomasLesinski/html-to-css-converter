@@ -20,7 +20,13 @@
         letter-spacing: -5px;
         color: #3e3e3e;
         cursor: text;
-        font: 70px Helvetica, Sans-Serif;
+        font: 54px Helvetica, Sans-Serif;
+      }
+
+      @media screen and (min-width: 768px) {
+        .headline {
+          font-size: 70px;
+        }
       }
 
       .subline {
@@ -28,7 +34,13 @@
         position: relative;
         max-width: 320px;
         margin: 0 auto;
-        top: -16px;
+        top: -14px;
+      }
+
+      @media screen and (min-width: 768px) {
+        .subline {
+          top: -16px;
+        }
       }
 
       .subline:after {
@@ -60,6 +72,7 @@
         font-weight: 700;
         border-top: 1px solid #CED4DA;
         border-radius: 10px;
+        padding: 0 10px;
       }
 
       .textarea-dark:focus ~ .textarea-headline {
@@ -78,7 +91,7 @@
         </div>
       </div>
 
-      <div class="row position-relative mt-3">
+      <div class="position-relative mt-3">
         <textarea class="form-control textarea-dark textarea-html" rows="10"></textarea>
         <div class="textarea-headline">HTML</div>
       </div>
@@ -87,7 +100,7 @@
         <div class="btn btn-primary btn-convert">Convert</div>
       </div>
 
-      <div class="row position-relative">
+      <div class="position-relative mb-4">
         <textarea class="form-control textarea-dark textarea-css" rows="10"></textarea>
         <div class="textarea-headline">CSS</div>
       </div>
